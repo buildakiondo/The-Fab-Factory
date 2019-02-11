@@ -1,0 +1,22 @@
+{
+  001: {
+    type: "input",
+    name: "List of People",
+    connections: {}
+  },
+  002: {
+    type: "process",
+    name: "get first name",
+    connections: {}
+  },
+  003: {
+    type: "trigger",
+    name: "on Click",
+    connections: {}
+  },
+  004: {
+    type: "output",
+    name: "People",
+    connections: {}
+  }
+}
