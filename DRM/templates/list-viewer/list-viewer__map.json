@@ -1,22 +1,51 @@
 {
-  "001": {
-    "type": "input",
-    "name": "List of People",
-    "connections": {}
-  },
-  "002": {
-    "type": "process",
-    "name": "get first name",
-    "connections": {}
-  },
-  "003": {
-    "type": "trigger",
-    "name": "on Click",
-    "connections": {}
-  },
-  "004": {
-    "type": "output",
-    "name": "People",
-    "connections": {}
+  "title": " List Viewer",
+  "author": "Jase T",
+  "template": {
+    "001": {
+      "type": "list",
+      "name": "List of People",
+      "data": [
+        "John Doe",
+        "Jane Doe",
+        "He Man",
+        "The Smurfs"
+      ],
+      "connections": ["002_001"],
+      "position":{"x":"100", "y":"100"}
+    },
+    "002": {
+      "type": "process",
+      "name": "Render on trigger",
+      "data": {
+        "list": [],
+        "count": "0",
+        "append": {}
+      },
+      "method": {
+        "type": "custom",
+        "arguments": "data, count",
+        "body": "let name = $('<span/>', {'id':'#00' + count, 'class':'list-item list-item--00' + count, 'text': data[count]});return name;"
+      },
+      "connections": ["001_001", "004_001", "003_001"],
+      "position":{"x":"450", "y":"100"}
+    },
+    "003": {
+      "type": "html",
+      "name": "People",
+      "data": {},
+      "connections": ["002_003", "004_002"],
+      "position":{"x":"800", "y":"100"}
+    },
+    "004": {
+      "type": "handler",
+      "name": "click",
+      "data": {
+        "caller": "button--next",
+        "callback": ""
+      },
+      "connections": ["002_002", "003_002"],
+      "position":{"x":"490", "y":"400"}
+    }
   }
 }
